@@ -68,9 +68,17 @@
       .custom-scrollbar::-webkit-scrollbar { width: 6px; }
       .custom-scrollbar::-webkit-scrollbar-thumb { background: rgba(22, 101, 52, 0.2); border-radius: 10px; }
 
-      .animate-fade-in { animation: fadeIn 0.8s ease-out forwards; }
+      /* Animation Classes */
       @keyframes fadeIn { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
+      @keyframes revealUp { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
+      @keyframes revealDown { from { opacity: 0; transform: translateY(-40px); } to { opacity: 1; transform: translateY(0); } }
+      @keyframes zoomIn { from { opacity: 0; transform: scale(0.92); } to { opacity: 1; transform: scale(1); } }
       
+      .animate-fade-in { animation: fadeIn 0.8s ease-out forwards; }
+      .animate-reveal-up { opacity: 0; animation: revealUp 1s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
+      .animate-reveal-down { opacity: 0; animation: revealDown 1s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
+      .animate-zoom-in { opacity: 0; animation: zoomIn 1.2s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
+
       .typing-dot {
         width: 6px; height: 6px; border-radius: 50%; display: inline-block;
         animation: typingBounce 1.4s infinite ease-in-out both; background-color: #16a34a;

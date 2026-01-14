@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { ChatInterface } from './components/ChatInterface';
 import { OrientationQuiz } from './components/OrientationQuiz';
 import { HomePage } from './components/HomePage';
-import { BlackjackGame } from './components/BlackjackGame';
-import { Moon, Sun, HelpCircle, Lightbulb, X, Send, Sparkles, Scroll, Feather, Info, MapPin, Compass, MessageCircle, Leaf, Gamepad2 } from 'lucide-react';
+import { PrivacyModal } from './components/PrivacyModal';
+import { Moon, Sun, HelpCircle, Lightbulb, X, Send, Sparkles, Scroll, Feather, Info, MapPin, Compass, MessageCircle, Leaf } from 'lucide-react';
 
 const App: React.FC = () => {
   const [isDarkMode, setIsDarkMode] = useState(false);
@@ -14,7 +14,19 @@ const App: React.FC = () => {
   const [feedbackText, setFeedbackText] = useState('');
   const [feedbackSent, setFeedbackSent] = useState(false);
   const [isQuizOpen, setIsQuizOpen] = useState(false);
-  const [isGameOpen, setIsGameOpen] = useState(false);
+  const [showPrivacy, setShowPrivacy] = useState(false);
+
+  useEffect(() => {
+    const hasAcceptedPrivacy = localStorage.getItem('romagnosi_privacy_accepted');
+    if (!hasAcceptedPrivacy) {
+      setShowPrivacy(true);
+    }
+  }, []);
+
+  const handleAcceptPrivacy = () => {
+    localStorage.setItem('romagnosi_privacy_accepted', 'true');
+    setShowPrivacy(false);
+  };
 
   const toggleTheme = () => setIsDarkMode(!isDarkMode);
 
@@ -171,16 +183,6 @@ const App: React.FC = () => {
                onExternalMessageHandled={() => setAutoQuestion(null)}
                onToggleSidebar={() => setIsSidebarOpen(true)}
              />
-             
-             {/* Blackjack Game Trigger */}
-             <button 
-                onClick={() => setIsGameOpen(true)}
-                className="fixed bottom-6 right-6 md:right-10 z-30 p-4 bg-emerald-600 text-white rounded-full shadow-2xl shadow-emerald-200 hover:bg-emerald-700 hover:scale-110 transition-all flex items-center gap-2 group"
-                title="Fai una pausa!"
-             >
-                <Gamepad2 size={24} />
-                <span className="max-w-0 overflow-hidden group-hover:max-w-xs transition-all duration-500 whitespace-nowrap font-lexend font-bold text-sm ml-0 group-hover:ml-2">Eco-Break</span>
-             </button>
           </main>
 
           {/* Quiz Modal */}
@@ -194,13 +196,9 @@ const App: React.FC = () => {
              </div>
           )}
 
-          {/* Game Modal */}
-          {isGameOpen && (
-             <div className="fixed inset-0 z-[70] flex items-center justify-center p-4 bg-emerald-950/40 backdrop-blur-md animate-fade-in">
-                 <BlackjackGame 
-                    onClose={() => setIsGameOpen(false)}
-                 />
-             </div>
+          {/* Privacy Modal */}
+          {showPrivacy && (
+            <PrivacyModal onAccept={handleAcceptPrivacy} />
           )}
 
           {/* Feedback Modal */}

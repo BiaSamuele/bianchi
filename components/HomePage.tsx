@@ -55,8 +55,8 @@ export const HomePage: React.FC<HomePageProps> = ({ onStart, isDarkMode, toggleT
         <div className="w-full max-w-6xl mx-auto px-6 py-12 md:py-20 flex flex-col items-center gap-12 md:gap-16">
             
             {/* Logo and Welcome Section */}
-            <div className="flex flex-col items-center text-center space-y-6 animate-fade-in">
-                <div className="relative p-6 bg-white rounded-[2.5rem] shadow-xl shadow-emerald-900/5 mb-4">
+            <div className="flex flex-col items-center text-center space-y-6">
+                <div className="relative p-6 bg-white rounded-[2.5rem] shadow-xl shadow-emerald-900/5 mb-4 animate-zoom-in">
                     <img 
                       src="https://20.gdromagnosi.it/img/xtra/logo.png" 
                       alt="Logo ISIS G.D. Romagnosi" 
@@ -74,18 +74,18 @@ export const HomePage: React.FC<HomePageProps> = ({ onStart, isDarkMode, toggleT
                 </div>
                 
                 <div className="space-y-2">
-                    <p className="font-lexend text-emerald-600 text-sm md:text-lg font-bold uppercase tracking-[0.3em]">
+                    <p className="font-lexend text-emerald-600 text-sm md:text-lg font-bold uppercase tracking-[0.3em] animate-reveal-down [animation-delay:200ms]">
                         Orientamento 2025/26
                     </p>
-                    <h1 className="font-lexend text-4xl md:text-7xl font-black eco-gradient-text tracking-tight leading-tight">
+                    <h1 className="font-lexend text-4xl md:text-7xl font-black eco-gradient-text tracking-tight leading-tight animate-reveal-up [animation-delay:400ms]">
                         Coltiva il tuo Talento
                     </h1>
-                    <p className="text-lg md:text-xl text-slate-600 max-w-2xl mx-auto font-medium leading-relaxed">
+                    <p className="text-lg md:text-xl text-slate-600 max-w-2xl mx-auto font-medium leading-relaxed animate-fade-in [animation-delay:700ms]">
                         Entra a far parte di una comunità che guarda al futuro con innovazione e rispetto per l'ambiente. La tua strada inizia qui all'ISIS G.D. Romagnosi.
                     </p>
                 </div>
 
-                <div className="pt-8">
+                <div className="pt-8 animate-fade-in [animation-delay:1000ms]">
                     <button 
                         onClick={onStart}
                         className="group relative px-10 py-5 bg-emerald-600 text-white rounded-3xl font-lexend text-xl font-bold tracking-wide transition-all duration-300 hover:bg-emerald-700 hover:shadow-2xl hover:shadow-emerald-200 hover:-translate-y-1 flex items-center gap-3"
@@ -97,8 +97,8 @@ export const HomePage: React.FC<HomePageProps> = ({ onStart, isDarkMode, toggleT
             </div>
 
             {/* Features Info */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full max-w-4xl animate-fade-in [animation-delay:0.2s]">
-                <div className="bg-white/60 backdrop-blur-md p-6 rounded-3xl border border-emerald-100 flex items-center gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full max-w-4xl animate-reveal-up [animation-delay:1200ms]">
+                <div className="bg-white/60 backdrop-blur-md p-6 rounded-3xl border border-emerald-100 flex items-center gap-4 transition-transform hover:scale-105 duration-300">
                     <div className="w-12 h-12 bg-emerald-100 rounded-2xl flex items-center justify-center text-emerald-600 shrink-0">
                         <Globe size={24} />
                     </div>
@@ -107,7 +107,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onStart, isDarkMode, toggleT
                         <p className="text-xs text-slate-500">Erasmus+ e stage all'estero</p>
                     </div>
                 </div>
-                <div className="bg-white/60 backdrop-blur-md p-6 rounded-3xl border border-emerald-100 flex items-center gap-4">
+                <div className="bg-white/60 backdrop-blur-md p-6 rounded-3xl border border-emerald-100 flex items-center gap-4 transition-transform hover:scale-105 duration-300">
                     <div className="w-12 h-12 bg-sky-100 rounded-2xl flex items-center justify-center text-sky-600 shrink-0">
                         <Recycle size={24} />
                     </div>
@@ -116,7 +116,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onStart, isDarkMode, toggleT
                         <p className="text-xs text-slate-500">Curricoli Green e Green Tech</p>
                     </div>
                 </div>
-                <div className="bg-white/60 backdrop-blur-md p-6 rounded-3xl border border-emerald-100 flex items-center gap-4">
+                <div className="bg-white/60 backdrop-blur-md p-6 rounded-3xl border border-emerald-100 flex items-center gap-4 transition-transform hover:scale-105 duration-300">
                     <div className="w-12 h-12 bg-amber-100 rounded-2xl flex items-center justify-center text-amber-600 shrink-0">
                         <Sparkles size={24} />
                     </div>
@@ -128,7 +128,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onStart, isDarkMode, toggleT
             </div>
 
             {/* Curriculum Cards */}
-            <div className="w-full animate-fade-in [animation-delay:0.4s] pb-12">
+            <div className="w-full animate-fade-in [animation-delay:1400ms] pb-12">
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                     {curriculumLinks.map((link, idx) => (
                         <a 
@@ -137,6 +137,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onStart, isDarkMode, toggleT
                             target="_blank"
                             rel="noopener noreferrer"
                             className={`group p-8 glass-card rounded-[2.5rem] transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl hover:bg-white border-b-4 border-emerald-500/20 ${link.accent}`}
+                            style={{ animationDelay: `${1400 + (idx * 150)}ms` }}
                         >
                             <div className="flex justify-between items-start mb-6">
                                 <div className="p-4 rounded-2xl bg-slate-50 shadow-inner border border-slate-100">
@@ -156,7 +157,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onStart, isDarkMode, toggleT
                 </div>
             </div>
 
-            <footer className="w-full mt-8 border-t border-emerald-100 pt-10 pb-12 text-center text-xs text-emerald-800 font-lexend tracking-[0.2em]">
+            <footer className="w-full mt-8 border-t border-emerald-100 pt-10 pb-12 text-center text-xs text-emerald-800 font-lexend tracking-[0.2em] animate-fade-in [animation-delay:2000ms]">
                 <p className="font-black text-sm mb-2">ISIS G.D. ROMAGNOSI</p>
                 <p className="opacity-70">ERBA (CO) • LONGONE AL SEGRINO</p>
                 <div className="mt-8 flex justify-center gap-8 opacity-50">
