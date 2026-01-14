@@ -3,7 +3,8 @@ import { ChatInterface } from './components/ChatInterface';
 import { OrientationQuiz } from './components/OrientationQuiz';
 import { HomePage } from './components/HomePage';
 import { PrivacyModal } from './components/PrivacyModal';
-import { Moon, Sun, HelpCircle, Lightbulb, X, Send, Sparkles, Scroll, Feather, Info, MapPin, Compass, MessageCircle, Leaf } from 'lucide-react';
+import { StageBookingModal } from './components/StageBookingModal';
+import { Moon, Sun, HelpCircle, Lightbulb, X, Send, Sparkles, Scroll, Feather, Info, MapPin, Compass, MessageCircle, Leaf, Users } from 'lucide-react';
 
 const App: React.FC = () => {
   const [isDarkMode, setIsDarkMode] = useState(false);
@@ -15,6 +16,7 @@ const App: React.FC = () => {
   const [feedbackSent, setFeedbackSent] = useState(false);
   const [isQuizOpen, setIsQuizOpen] = useState(false);
   const [showPrivacy, setShowPrivacy] = useState(false);
+  const [isStageModalOpen, setIsStageModalOpen] = useState(false);
 
   useEffect(() => {
     const hasAcceptedPrivacy = localStorage.getItem('romagnosi_privacy_accepted');
@@ -114,26 +116,41 @@ const App: React.FC = () => {
             
             {/* Scrollable Middle Section */}
             <div className="flex-1 overflow-y-auto custom-scrollbar px-5 py-6">
-                <div className="p-4 rounded-2xl mb-8 bg-emerald-50/50 border border-emerald-100 text-slate-600">
+                <div className="p-4 rounded-2xl mb-6 bg-emerald-50/50 border border-emerald-100 text-slate-600">
                     <div className="flex items-start gap-3">
                         <Leaf size={18} className="text-emerald-500 shrink-0 mt-0.5" />
                         <span className="text-sm font-medium">"Ciao! Sono il tuo tutor digitale. Scopriamo insieme il tuo futuro all'ISIS Romagnosi!"</span>
                     </div>
                 </div>
 
-                {/* Quiz CTA */}
-                <button 
-                    onClick={() => setIsQuizOpen(true)}
-                    className="w-full mb-8 group p-4 bg-white border-2 border-slate-100 rounded-2xl hover:border-emerald-200 transition-all flex items-center justify-between shadow-sm hover:shadow-md"
-                >
-                    <div className="text-left">
-                        <p className="font-lexend font-bold text-slate-800">Trova la tua strada</p>
-                        <p className="text-xs text-slate-500">Fai il test veloce</p>
-                    </div>
-                    <div className="bg-emerald-500 p-2 rounded-xl text-white group-hover:rotate-12 transition-transform">
-                      <Compass size={20} />
-                    </div>
-                </button>
+                {/* Actions Grid */}
+                <div className="space-y-3 mb-8">
+                  <button 
+                      onClick={() => setIsQuizOpen(true)}
+                      className="w-full group p-4 bg-white border-2 border-slate-100 rounded-2xl hover:border-emerald-200 transition-all flex items-center justify-between shadow-sm hover:shadow-md"
+                  >
+                      <div className="text-left">
+                          <p className="font-lexend font-bold text-slate-800">Trova la tua strada</p>
+                          <p className="text-xs text-slate-500">Fai il test veloce</p>
+                      </div>
+                      <div className="bg-emerald-500 p-2 rounded-xl text-white group-hover:rotate-12 transition-transform">
+                        <Compass size={20} />
+                      </div>
+                  </button>
+
+                  <button 
+                      onClick={() => setIsStageModalOpen(true)}
+                      className="w-full group p-4 bg-emerald-600 text-white border-2 border-emerald-600 rounded-2xl hover:bg-emerald-700 transition-all flex items-center justify-between shadow-md"
+                  >
+                      <div className="text-left">
+                          <p className="font-lexend font-bold">Vieni a trovarci</p>
+                          <p className="text-xs opacity-80">Studente per un giorno</p>
+                      </div>
+                      <div className="bg-white/20 p-2 rounded-xl text-white group-hover:scale-110 transition-transform">
+                        <Users size={20} />
+                      </div>
+                  </button>
+                </div>
 
                 {/* FAQ Section */}
                 <div className="mb-6">
@@ -194,6 +211,11 @@ const App: React.FC = () => {
                     isDarkMode={isDarkMode}
                  />
              </div>
+          )}
+
+          {/* Stage Booking Modal */}
+          {isStageModalOpen && (
+             <StageBookingModal onClose={() => setIsStageModalOpen(false)} />
           )}
 
           {/* Privacy Modal */}
